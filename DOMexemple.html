@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exemple DOM </title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div>
+		<p id="rep">Introduction au DOM.. => </p>
+	</div>
+	<button onclick="test()">Ajouter</button>
+	<button onclick="test1()">Supprimer</button>	
+	<ul style="list-style-type: decimal-leading-zero;">
+		<li>HTML</li>
+		<li>CSS</li>
+		<li>JS</li>
+	</ul>
+
+	<script type="text/javascript">
+		var z = document.getElementsByTagName("LI");
+
+		function test(){	
+			var x = document.createElement("LI");
+		    var y = document.createTextNode(prompt("Texte à ajouter: "));
+		    x.appendChild(y);
+		    document.getElementsByTagName("UL")[0].appendChild(x);
+			for (var i = 0; i <= z.length; i++) {
+				z[z.length-2].style.color = 'red';
+				z[z.length-1].removeAttribute("style");
+				z[z.length-3].removeAttribute("style");
+
+			}
+		}
+
+		function test1(){
+			if(z.length > 0){
+				z[z.length-1].remove();
+			}else {
+				alert("Il y a plus rien à supprimer !");
+			}
+
+		}
+	</script>
+</body>
+</html>

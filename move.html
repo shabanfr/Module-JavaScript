@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Deplacement</title>
+	<style type="text/css">
+		body{
+			margin:0;
+		}
+		#joueur {
+			position: absolute;
+			background: red;
+			height: 100px;
+			width: 100px;
+		}
+		#bloc {
+			position: absolute;
+			background: black;
+			height:100px;
+			width: 100px;
+		}
+		#info {
+		    position: absolute;
+		    padding: 5px 35px;
+		    background-color: #FFC107;
+		    border: 1px solid #FF9800;
+		    right: 0;
+		}
+	</style>
+</head>
+<body onkeydown="anim(event)">
+	<div id="info">
+		j.x = <div id="jx"></div>
+		j.y = <div id="jy"></div>
+	</div>
+	<div id="bloc"></div>
+	<div id="joueur"></div>
+	<script type="text/javascript">
+	
+	var j = {height: 100,width:100,x: 100,y: 100}
+	var h = {height: 100,width:100,x: 300,y: 400} 
+
+	joueur.style.margin = (j.y)+"px 0px 0px "+(j.x)+"px";
+
+	var enemmi = document.getElementById("bloc");
+	var jx = document.getElementById("jx");
+	var jy = document.getElementById("jy");
+
+	enemmi.style.margin = (h.y)+"px 0px 0px "+(h.x)+"px";
+
+
+	function anim(e) {
+		var joueur = document.getElementById("joueur");
+
+	    if (e.keyCode == 39) {
+	    	//alert("right");
+	    	j.x = j.x + 100;
+	    	joueur.style.margin = (j.y)+"px 0px 0px "+(j.x)+"px";
+	    	jx.innerHTML = j.x;
+	    } else if (e.keyCode == 37) {
+	    	//alert("left");
+	    	j.x = j.x - 100;
+	    	joueur.style.margin = (j.y)+"px 0px 0px "+(j.x)+"px";
+	    	jx.innerHTML = j.x;
+
+	    } else if (e.keyCode == 40) {
+	    	//alert("bottom");
+	    	j.y = j.y + 100;
+	    	joueur.style.margin = (j.y)+"px 0px 0px "+(j.x)+"px";
+	    } else if (e.keyCode == 38) {
+	    	//alert("top");
+	    	j.y = j.y - 100;
+	    	joueur.style.margin = (j.y)+"px 0px 0px "+(j.x)+"px";
+	    }
+
+	    if(j.x < 0){
+	    	j.x = 0;
+	    	joueur.style.margin = (j.y)+"px 0px 0px "+(j.x)+"px";
+	    	console.log("limite x");
+	    }
+	    else if (j.y < 0){
+	    	j.y = 0;
+	    	joueur.style.margin = (j.y)+"px 0px 0px "+(j.x)+"px";
+	    console.log("limite y");
+	    }
+
+	    if(j.x == h.x && j.y == h.y){
+			console.log("col");
+
+	    }
+
+
+	}
+
+
+	</script>
+</body>
+</html>

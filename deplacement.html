@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Déplacement</title>
+    <link rel="stylesheet" type="text/css" href="deplacement.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="scroll" onclick="demarre(m.clientHeight,m.scrollTop)">▼</div>
+    <nav>
+        <ul>
+            <li><a href="#deux">Accueil</a></li>
+            <li><a href="#trois">Communauté</a></li>
+            <li>A propos</li>
+        </ul>
+    </nav>
+    <section>
+    	<div class="header _bg">
+	        <h1>Section #1</h1>
+	        <div id="demo"></div>
+	    </div>
+    </section>
+    <section>
+    	<div class="content">
+	        <h1>Section #2</h1>
+	        <div id="deux-img">Hello, ceci est un test !</div>
+	        <div></div>
+	    </div>
+    </section>
+    <section>
+    	<div class="content">
+	        <h1>Section #3</h1>
+	        <div class="container">
+
+	            <div class="rows">
+
+	                <div class="col-3">
+	                    <div class="tree">
+	                        <h1>Balbalba</h1>
+	                        <p>sdlkjlksd jfjds aj lbco szisia mllsa asdlk lk lsdjla laslkjdasl ... asl sdlk dl s aoijfoijf ccckxpjas apojsjdp qoads obvkfjslde aposzjd ..</p>
+	                    </div>
+	                </div>
+
+	                <div class="col-3">
+	                    <div class="tree">
+	                        <h1>Balbalba</h1>
+	                        <p>sdlkjlksd jfjds aj lbco szisia mllsa asdlk lk lsdjla laslkjdasl ... asl sdlk dl s aoijfoijf ccckxpjas apojsjdp qoads obvkfjslde aposzjd ..</p>
+	                    </div>
+	                </div>
+
+	                <div class="col-3">
+	                    <div class="tree">
+	                        <h1>Balbalba</h1>
+	                        <p>sdlkjlksd jfjds aj lbco szisia mllsa asdlk lk lsdjla laslkjdasl ... asl sdlk dl s aoijfoijf ccckxpjas apojsjdp qoads obvkfjslde aposzjd ..</p>
+	                    </div>
+	                </div>
+
+	            </div>
+	            <div class="rows">
+
+	                <div class="col-5">
+	                    <div class="tree">
+	                        <h1>Balbalba</h1>
+	                        <p>sdlkjlksd jfjds aj lbco szisia mllsa asdlk lk lsdjla laslkjdasl ... asl sdlk dl s aoijfoijf ccckxpjas apojsjdp qoads obvkfjslde aposzjd ..</p>
+	                    </div>
+	                </div>
+
+	                <div class="col-5">
+	                    <div class="tree">
+	                        <h1>Balbalba</h1>
+	                        <p>sdlkjlksd jfjds aj lbco szisia mllsa asdlk lk lsdjla laslkjdasl ... asl sdlk dl s aoijfoijf ccckxpjas apojsjdp qoads obvkfjslde aposzjd ..</p>
+	                    </div>
+	                </div>
+
+	            </div>
+	            <div class="rows">
+
+	                <div class="col-10">
+	                    <div class="tree">
+	                        <h1>Balbalba</h1>
+	                        <p>sdlkjlksd jfjds aj lbco szisia mllsa asdlk lk lsdjla laslkjdasl ... asl sdlk dl s aoijfoijf ccckxpjas apojsjdp qoads obvkfjslde aposzjd ..</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+    <section>
+    	<div class="content">
+        	<h1>Section #4</h1>
+        </div>
+    </section>
+    <script type="text/javascript">
+        //Variables Globales
+        var a1 = document.getElementById("deux-img");
+        var a2 = document.getElementsByClassName("container")[0];
+        var a3 = document.getElementsByTagName("UL")[0];
+		
+		var m = document.documentElement;
+        
+        var i = 0;
+        var txt = 'Shaban Kaloshi';
+        var speed = 200;
+        
+
+        var lastScrollTop = 0;
+	    var t = 0;
+
+        //Fonctions
+        function demarre(arg, arg2) {
+            var j = arg2;
+            var x = setInterval(scrollWin, 7);
+
+            function scrollWin() {
+                j = j + 10;
+                if (j >= arg + arg2) {
+                    clearInterval(x);
+                }
+                window.scrollTo(0, j);
+                //console.log(j);
+            }
+        }
+
+
+        function typeWriter() {
+
+            if (i < txt.length) {
+                document.getElementById("demo").innerHTML += txt.charAt(i);
+                i++;
+                if (i == txt.length) {
+                    if (m.scrollTop > m.clientHeight) {
+
+                    } else {
+                        demarre(m.clientHeight, 0);
+                    }
+                }
+                var y = setTimeout(typeWriter, speed);
+            }
+        }
+	
+        //Menu && affichage transition
+        function myFunction() {
+        	//Menu
+            if (m.scrollTop) {
+	        	if (m.scrollTop > lastScrollTop) {
+				    if (t == 0) {
+				        t = 1;
+				        console.log("ok--");
+				        
+				        opaceffet(a3,false);
+
+				    }
+				} else {
+				    if (t == 1) {
+				        console.log("ok++");
+				        t = 0;
+				        document.getElementsByTagName("UL")[0].className = "test";
+				        opaceffet(a3,true);
+
+				    }              
+	           }
+	           lastScrollTop = m.scrollTop;
+            } else {
+                document.getElementsByTagName("UL")[0].className = "";
+            }
+
+            // Transition
+            if (m.scrollTop > (m.clientHeight) / 2 && m.scrollTop < (m.clientHeight) * 2) {
+                    //console.log("Afficher: "+document.documentElement.clientHeight+"px");
+                    //document.getElementById("deux-img").style.transform = 'translateX(0vw)';
+                    transeffet(a1,0);
+
+                }
+            if (m.scrollTop > (m.clientHeight * 3) / 2 && m.scrollTop < (m.clientHeight) * 3) {
+                //console.log("Afficher: "+document.documentElement.clientHeight+"px");
+                opaceffet(a2,true);
+            }
+        }
+
+        function transeffet(a,b){
+        	a.style.transform = "translateX("+b+"vw)";
+        }
+        
+        function opaceffet(a,b){
+        	if(b == true){
+        		a.style.opacity = '1';
+        		a.style.visibility = 'visible';
+        	}else{
+        		a.style.opacity = '0';
+        		a.style.visibility = 'hidden';
+        	}
+
+        }
+
+        //Executeurs
+        
+        window.onscroll = function() {
+            myFunction()
+        };
+        
+        window.onload = function() {
+            typeWriter()
+        };
+    </script>
+</body>
+
+</html>

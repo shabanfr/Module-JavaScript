@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Déposer objet:</title>
+	<link rel="stylesheet" type="text/css" href="pose-obj.css">
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="objets">
+		<div id="rouge" class="carre" ondblclick="ajoutercarre(this.id)"></div>
+		<div id="bleu" class="carre" ondblclick="ajoutercarre(this.id)"></div>
+		<div id="vert" class="carre" ondblclick="ajoutercarre(this.id)"></div>
+	</div>
+	<div id="map">	
+	</div>
+	<div id="demo"></div>
+	<div id="demo1"></div>
+	<script>
+		var oh = document.getElementById('objets').offsetWidth;
+		var mousePosition;
+		var offset = [0,0];
+		var div;
+		var isDown = false;
+		var carre = document.getElementsByClassName("nomargin");
+		var nb = 0;
+
+
+		var map = document.getElementById("map");
+		if(map) {
+		  var rect = map.getBoundingClientRect();
+		   //console.log(rect.height);  
+		}
+
+		function precisionRound(number, precision) {
+			var factor = Math.pow(50, precision);
+			return Math.round(number * factor) / factor;
+		}
+
+		function ajoutercarre(arg){
+
+			var div = document.createElement('div');
+			div.id = arg;
+			div.className = 'carre nomargin';
+			//div.setAttribute("onclick", "test()");
+
+			map.appendChild(div);
+
+			div.addEventListener('mousedown', function(e) {
+				console.log("mousedown");
+			    isDown = true;
+			    offset = [
+			        div.offsetLeft - e.clientX,
+			        div.offsetTop - e.clientY
+			    ];
+			    nb = this;
+			    console.log(this);
+			}, true);
+
+			div.addEventListener('mouseup', function() {
+				console.log("mouse up");
+				
+				nb.style.left = precisionRound((mousePosition.x + offset[0]),-1) + 'px';
+
+				nb.style.top = precisionRound((mousePosition.y + offset[1]),-1) + 'px';
+
+
+
+			    isDown = false;
+			}, true);
+
+			map.addEventListener('mousemove', function(event) {
+
+			    event.preventDefault();
+			    if (isDown) {
+			    	console.log("mouse move");
+			        mousePosition = {
+			            x : event.clientX,
+			            y : event.clientY
+			        };  
+
+		        	nb.style.left = (mousePosition.x + offset[0]) + 'px';
+		        	nb.style.top  = (mousePosition.y + offset[1]) + 'px';
+			        
+			    }
+			}, true);
+
+		}
+
+
+
+
+
+
+	</script>
+</body>
+</html>
+

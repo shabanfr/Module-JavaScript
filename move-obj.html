@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mouvement objet:</title>
+	<link rel="stylesheet" type="text/css" href="pose-obj.css">
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="objets">
+		<div id="rouge" class="carre" ondblclick="ajoutercarre(this.id)"></div>
+		<div id="bleu" class="carre" ondblclick="ajoutercarre(this.id)"></div>
+		<div id="vert" class="carre" ondblclick="ajoutercarre(this.id)"></div>
+	</div>
+	<div id="map">
+		<div id="rouge" class="carre nomargin" style="top: 0px; left: 0px;"></div>
+	</div>
+
+<script type="text/javascript">
+
+var carre = document.getElementsByClassName("nomargin")[0];
+var map = document.getElementById("map");
+var i = 0;
+var lastpos = 0;
+var next = false;
+var stop = false;
+
+function precisionRound(number, precision) {
+    var factor = Math.pow(50, precision);
+    return Math.round(number * factor) / factor;
+}
+
+function moveX(arg) {
+    var stop = false;
+    var i = parseInt(carre.style.left);
+    var x = setInterval(movecarre, 5);
+    var b = arg;
+
+    function movecarre(b) {
+        if (arg >= parseInt(carre.style.left)) {
+            i++;
+            if (i == arg || stop == true) {
+                clearTimeout(x);
+                next = true;
+                moveY(newposy);
+            }
+            console.log("IF i = " + i);
+            console.log("carre = " + parseInt(carre.style.left));
+            console.log('----------');
+
+            carre.style.left = i + "px";
+        } else {
+            i--;
+            if (i == arg || stop == true) {
+                clearTimeout(x);
+                next = true;
+                moveY(newposy);
+            }
+            console.log("ELSE i = " + i);
+            console.log("carre = " + parseInt(carre.style.left));
+            console.log('----------');
+
+            carre.style.left = i + "px";
+        }
+    }
+
+}
+
+function moveY(arg) {
+    var i = parseInt(carre.style.top);
+    var x = setInterval(movecarre, 5);
+    var b = arg;
+
+    function movecarre(b) {
+        if (arg >= parseInt(carre.style.top)) {
+            i++;
+            if (i == arg) {
+                clearTimeout(x);
+            }
+            console.log("IF i = " + i);
+            console.log("carre = " + parseInt(carre.style.top));
+            console.log('----------');
+
+            carre.style.top = i + "px";
+        } else {
+            i--;
+            if (i == arg) {
+                clearTimeout(x);
+            }
+            console.log("ELSE i = " + i);
+            console.log("carre = " + parseInt(carre.style.top));
+            console.log('----------');
+
+            carre.style.top = i + "px";
+        }
+    }
+
+}
+map.addEventListener('click', function() {
+    stop = true;
+    console.log(stop);
+}, true);
+map.addEventListener('dblclick',
+    function(event) {
+        mousePosition = {
+            x: event.clientX,
+            y: event.clientY
+        };
+        var posx = ((mousePosition.x - 25) - map.offsetLeft);
+        var posy = ((mousePosition.y - 25) - map.offsetTop);
+        newposx = precisionRound(posx, -1);
+        newposy = precisionRound(posy, -1);
+        moveX(newposx);
+
+        /*
+        carre.style.top  =  precisionRound(posy,-1) +'px';
+        carre.style.left  =  precisionRound(posx,-1) +'px';
+        */
+
+
+    }, true);
+</script>
+
+</body>
+</html>
+

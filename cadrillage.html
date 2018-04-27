@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+    background-color: #ffc8c8;
+    margin: 0;
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+		}
+		#test {
+position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 200px;
+    width: 475px;
+    margin: auto;
+    font-size: 70px;
+    font-weight: bolder;
+    color: #fff;
+    text-shadow: 1px 1px 1px #929292;
+    transition: all 2s;
+		}
+	#cercle {
+height: 300px;
+    width: 300px;
+    background-color: #FFF;
+    border-radius: 150px;
+    border: 2px solid #eab7b7;
+    margin: auto;
+    transition: all 2s;
+    visibility: hidden;
+    opacity: 0;
+  	transition: visibility 0s, opacity 0.5s linear;
+	}
+
+	article {
+    margin-top: 490px;
+	}
+
+	.content {
+	    max-width:  1000px;
+	    width:  100%;
+	    padding-right: 15px;
+	    padding-left: 15px;
+	    margin-right: auto;
+	    margin-left: auto;
+	}
+
+	.row {
+	    background-color:  #FFF;
+	    display: flex;
+	}
+
+	.simple-txt {
+	    background-color: #FFF;
+	}
+	</style>
+	<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i">
+
+</head>
+<body  onload="afficherbody()">
+		<div id="test">
+			<p id="demo"></p>
+			<div id="cercle"></div>
+		</div>
+		<article>
+			<div class="content">
+				<div class="row">
+					<p>
+						{ROW}
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id turpis sapien. Fusce laoreet urna lectus, et fringilla nibh ultricies id. Mauris sagittis est ultrices sollicitudin condimentum. Praesent tristique tristique congue. Vestibulum aliquet efficitur mauris, in lacinia ligula sollicitudin quis. Quisque lorem tortor, placerat ut vestibulum non, varius id nisi.
+					</p>
+				</div>
+				<div class="row">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec vestibulum neque. Integer eget ullamcorper felis. In malesuada, sem in ornare pellentesque, quam est imperdiet est, sed rhoncus lorem urna vel nibh. Nulla in felis eget sapien viverra consectetur. Proin.
+					</p>
+				</div>
+			</div>
+			<div class="content">
+				<div class="simple-txt" onmouseover="rotateDIV()" id="rotate2D">
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at quam cursus, vulputate metus et, malesuada risus. Integer placerat nulla vitae dictum efficitur. Vivamus congue rhoncus nisi, in mollis eros suscipit id. Ut rhoncus odio sed orci dignissim ullamcorper. Ut a sapien at metus vehicula fermentum. Integer volutpat, lectus euismod pellentesque placerat, leo odio consequat justo, pharetra vulputate libero tortor vel arcu. Morbi massa elit, iaculis vitae fermentum et, consequat at diam. Proin congue consectetur mattis. Morbi scelerisque elit at.
+					</p>
+				</div>
+			</div>
+		</article>
+
+
+	<script type="text/javascript">
+	var i = 0;
+	var txt = 'Shaban Kaloshi';
+	var speed = 90;
+	var x = 10;
+
+
+	function afficherbody(){
+		setTimeout(typeWriter,1000);
+		demarre();
+	}
+
+	function cercle(){
+		var a = document.getElementById("cercle");
+		var x = 300;
+	    a.style.visibility  = 'visible';
+	    a.style.opacity = '1';
+	    setInterval(ouverture,5);
+	    function ouverture(){
+	    	if(x == 475){
+
+	    	} else{
+	    		x++;
+	    		a.style.width = x+"px";
+	    	}
+	    }
+	}
+
+	function typeWriter() {
+	  if (i < txt.length) {
+	    document.getElementById("demo").innerHTML += txt.charAt(i);
+	    i++;
+	    var y = setTimeout(typeWriter, speed);
+	  }
+	  if(y >= 15){
+	  	document.getElementById("test").style.bottom = "500px";
+		setTimeout(cercle, 1000);
+	  }
+	}
+
+	  function demarre(){
+	    var i = 0;
+	    var b = document.documentElement;
+	    var e = b.scrollHeight - b.clientHeight;
+	    var x = setInterval(scrollWin,1);
+
+	 function bal(){
+	    i++;
+	    if(i == 10){
+	      clearInterval(x);
+	    }
+	    document.write("heelloo");
+	  }
+
+	  function scrollWin() {
+	    i = i + 1;
+	    if(i >= e){
+	      clearInterval(x);
+	    }
+	    window.scrollTo(0, i);
+	    console.log(i);
+	  }
+	}
+
+
+
+var x, y, n = 0, ny = 0, rotINT, rotYINT
+            function rotateDIV() {
+                x = document.getElementById("rotate2D")
+                clearInterval(rotINT)
+                rotINT = setInterval("startRotate()", 6)
+            }
+
+            function startRotate() {
+                n = n + 1
+                x.style.transform = "rotate(" + n + "deg)"
+                x.style.webkitTransform = "rotate(" + n + "deg)"
+                x.style.OTransform = "rotate(" + n + "deg)"
+                x.style.MozTransform = "rotate(" + n + "deg)"
+            
+                if (n == 180 || n == 360) {
+                	console.log("X:"+n);
+                    clearInterval(rotINT)
+                    if (n == 360) {
+                        n = 0
+                    }
+                }
+            }
+
+	</script>
+
+</body>
+</html>

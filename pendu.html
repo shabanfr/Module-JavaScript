@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bonhomme pendu !: Game</title>
+	<link rel="stylesheet" type="text/css" href="css/pendu.css">
+</head>
+<body>
+	<h1>Jeu du pendu</h1>
+	<img src="images/pendu_0.png">
+	<div id="lettre"></div>
+	<h2 id="mot"></h2>
+
+	<script type="text/javascript">
+		var lettre = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+		var mot = ["SHABAN","ARBRE","PENDU","VOITURE","CAMION","CENTRE","ECOLE","ELEVE","PROGRAMMATION","INFORMATIQUE","JAVASCRIPT"];
+		var motchoisi = [];
+		var separerlettre = mot[Math.floor((Math.random() * mot.length-1) + 1)];
+		var yy = [];
+		console.log(separerlettre);
+
+		for (var i = 0; i < separerlettre.length; i++) {
+			motchoisi.push(separerlettre[i]);
+			yy.push("-");
+		}
+		console.log(motchoisi);
+		for (var i = 0; i < yy.length; i++) {
+		
+			document.getElementById("mot").innerHTML += yy[i];
+		}
+
+		for (var i = 0; i < lettre.length; i++) {
+			document.getElementById("lettre").innerHTML += "<h4 onclick='lc("+i+")'>"+lettre[i]+"</h4>";
+		}
+		
+		var xx = 0;
+		function lc(l){
+			idx = motchoisi.indexOf(lettre[l]);
+			if(idx >= 0){
+				document.getElementsByTagName("H4")[l].style.backgroundColor = 'green';
+
+				while (idx != -1) {
+					yy.splice(idx, 1, lettre[l]);
+					idx = motchoisi.indexOf(lettre[l], idx + 1);
+				}
+			
+				document.getElementById("mot").innerHTML = "";
+				for (var j = 0; j < motchoisi.length; j++) {
+					document.getElementById("mot").innerHTML += yy[j];
+				}
+				
+				console.log(yy);
+
+			} else {
+				xx++;
+				document.getElementsByTagName("IMG")[0].src = "images/pendu_"+xx+".png";
+				document.getElementsByTagName("H4")[l].style.backgroundColor = 'red';
+				if(xx > 6){
+					document.getElementsByTagName("H4")[l].style.backgroundColor = 'red';
+					alert("Game over !! Le mot à afficher était "+separerlettre);
+					location.reload();
+				}
+			}
+		}
+
+	</script>
+</body>
+</html>

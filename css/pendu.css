@@ -1,0 +1,12 @@
+body{}
+#lettre {overflow:  hidden;width: 270px;cursor: pointer;}
+#lettre h4 {
+    font-style: normal;
+    border: 1px solid;
+    padding: 3px;
+    margin: 1px;
+    float: left;
+    width:  20px;
+    height: 20px;
+    text-align:  center;
+}
