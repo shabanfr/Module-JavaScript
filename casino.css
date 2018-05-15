@@ -1,0 +1,122 @@
+#jeu {
+    width: 480px;
+}
+
+#jeu-fond {
+    background-color: #f1f1f1;
+    height: 100%;
+    width: 100%;
+}
+
+#jeu-haut {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    background-color: #607D8B;
+    border: 2px solid #365a6b;
+}
+
+.joueur {
+    padding: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 150%;
+}
+
+.score {
+    align-self: center;
+    justify-self: center;
+    font-size: x-large;
+    font-weight: bolder;
+    color: #FF9800;
+}
+
+#jeu-bas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.jeu-joueur {
+    height: 80%;
+    width: 100%;
+    background-color: #ececec;
+}
+
+.joueur-choix {
+    background-color: #d6d6d6;
+    height: 20%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.jeu-joueur {
+    height: 80%;
+    width: 100%;
+    background-color: #ececec;
+    display: grid;
+    transition: background 1s;
+}
+
+#interface-joueur {
+    height: 300px;
+    width: auto;
+}
+
+#pierre {
+    background-image: url(images/pierre.png);
+}
+
+#feuille {
+    background-image: url(images/feuille.png);
+}
+
+#ciseau {
+    background-image: url(images/ciseau.png);
+}
+
+.pierre {
+    background-image: url(images/pierre.png);
+}
+
+.feuille {
+    background-image: url(images/feuille.png);
+}
+
+.ciseau {
+    background-image: url(images/ciseau.png);
+}
+
+.img {
+    height: 108px;
+    width: 94px;
+    justify-self: center;
+    place-self: center;
+    align-self: center;
+    visibility: visible;
+    transition: background 0.5s;
+}
+
+.joueur-select {
+    height: 50px;
+    width: 50px;
+    background-size: 36px;
+    background-repeat: no-repeat;
+    justify-self: center;
+    place-self: center;
+    border-radius: 40px;
+    background-position: 50%;
+    background-color: #FFF;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+#jeu-resultat-adv {
+    filter: FlipH;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
